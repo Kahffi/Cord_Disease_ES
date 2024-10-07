@@ -13,6 +13,11 @@ export default function useFacts(rules: Rule[]) {
     return DISEASES.filter((disease) => inferredFacts.has(disease.code));
   }, [inferredFacts]);
 
+  function clearFacts() {
+    setFacts(new Set([]));
+    setInferredFacts(new Set([]));
+  }
+
   function addFact(newFact: string) {
     const temp = new Set(facts);
     temp.add(newFact);
@@ -50,12 +55,19 @@ export default function useFacts(rules: Rule[]) {
     setInferredFacts(tempInferFacts);
   }
 
+  function toggleAnswer(id: string): void {
+    if (facts.has(id)) {
+      deleteFact(id);
+    } else {
+      addFact(id);
+    }
+  }
+
   return {
     facts,
     doForwardChaining,
-    inferredFacts,
-    addFact,
-    deleteFact,
+    toggleAnswer,
     decissions,
+    clearFacts,
   };
 }
