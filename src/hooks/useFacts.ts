@@ -13,6 +13,8 @@ export default function useFacts(rules: Rule[]) {
     return DISEASES.filter((disease) => inferredFacts.has(disease.code));
   }, [inferredFacts]);
 
+  //   fungsi ini digunakan untuk me-reset disease code di dalam facts,
+  // dikarenakan implementasi saat ini hanya dapat auto-update symptom code
   function clearFacts() {
     setFacts(new Set([]));
     setInferredFacts(new Set([]));
@@ -23,11 +25,19 @@ export default function useFacts(rules: Rule[]) {
     temp.add(newFact);
     setFacts(temp);
   }
-
   function deleteFact(target: string) {
     const temp = new Set(facts);
     temp.delete(target);
     setFacts(temp);
+  }
+  //   karena menggunakan React JS, implementasi method Set yang merubah nilai variable
+  //  tidak dapat digunakan secara langsung
+  function toggleAnswer(id: string): void {
+    if (facts.has(id)) {
+      deleteFact(id);
+    } else {
+      addFact(id);
+    }
   }
 
   function doForwardChaining() {
@@ -53,14 +63,6 @@ export default function useFacts(rules: Rule[]) {
 
     setFacts(tempFacts);
     setInferredFacts(tempInferFacts);
-  }
-
-  function toggleAnswer(id: string): void {
-    if (facts.has(id)) {
-      deleteFact(id);
-    } else {
-      addFact(id);
-    }
   }
 
   return {
