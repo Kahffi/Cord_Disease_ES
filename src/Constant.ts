@@ -98,24 +98,4 @@ const SYMPTOMS: Symptom[] = [
   },
 ];
 
-// const SYMPTOMS_MAP = SYMPTOMS.reduce((map, symptom) => {
-//   map.set(symptom.code, symptom.name);
-//   return map;
-// }, new Map<string, string>());
-
-// const DISEASE_MAP = DISEASES.reduce((map, disease) => {
-//   map.set(disease.code, disease.name);
-//   return map;
-// }, new Map<string, string>());
-// const ANSWERS_MAP = ["a", "b", "c", "f"];
-// // const Questions = [
-// //   "Chlorotic Colored Leaves",
-
-// //   "Experiencing growth retardation",
-
-// //   "The white color is like flour on the upper and lower surfaces of the leaves which are chlorotic",
-
-// //   "Leaves curled and twisted ",
-// // ];
-
 export { DISEASES, SYMPTOMS };

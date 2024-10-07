@@ -27,7 +27,6 @@ export default function useFacts(rules: Rule[]) {
 
   function doForwardChaining() {
     const tempInferFacts = new Set<string>([]);
-    // const tempFacts = new Set<string>(facts);
 
     const tempFacts = new Set<string>(facts);
 

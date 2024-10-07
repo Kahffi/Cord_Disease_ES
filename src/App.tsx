@@ -6,7 +6,6 @@ import useFacts from "./hooks/useFacts";
 import { SYMPTOMS } from "./Constant";
 
 function App() {
-  // const [answers, setAnswers] = useState<boolean[]>(Questions.map(() => false));
   const { rules } = useRule();
   const { facts, doForwardChaining, addFact, deleteFact, decissions } =
     useFacts(rules);
@@ -36,13 +35,6 @@ function App() {
               </Question>
             );
           })}
-          {/* {Questions.map((question, idx) => {
-            return (
-              <Question key={`q${idx}`} onChange={toggleAnswer} index={idx}>
-                {question}
-              </Question>
-            );
-          })} */}
         </div>
         <button
           type="button"
