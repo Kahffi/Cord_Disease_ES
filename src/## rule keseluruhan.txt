@@ -1,0 +1,32 @@
+## rule keseluruhan
+
+G1. Daun berwarna klorosis
+G2. Mengalami pertumbuhan terhambat
+G3. Warna putih seperti tepung pada permukaan atas dan bawah daun yang klorosis
+G4. Daun menggulung dan melintir
+G5. Pembentukan tongkol terganggu
+G6. Daun yang terserang tampak layu
+G7. Beberapa bercak kecil menyatu membentuk bercak yang lebih besar
+G8. Bercak coklat muda memanjang berbentuk gulungan atau perahu
+G9. Bercak coklat berbentuk elips
+G10. Daun tampak kering
+G11. Daun terlihat kering
+G12. Bercak-bercak kecil berwarna coklat atau kuning pada permukaan daun
+G13. Bercak-bercak merah pada pelepah
+G14. Terdapat benang-benang yang bentuknya tidak beraturan, berwarna putih, kemudian coklat
+G15. Keluar serbuk seperti tepung berwarna coklat kekuningan
+P001. Bulai
+P002. Blight
+P003. Leaf Rust
+
+
+G4,G2-G5
+G5-G3
+G5-G1
+G1,G3-P001
+G10,G8,G1-G7
+G9-P002
+G7,G6,G1-G9
+G15-P003
+G10,G11,G12-G14
+G13,G14-G15

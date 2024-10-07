@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Rule } from "./useRule";
-import { ANSWERS_MAP } from "../Constant";
+import { DISEASES } from "../Constant";
 
 const factsHasAll = (list: string[], facts: Set<string>) =>
   list.every((item) => facts.has(item));
@@ -9,27 +9,27 @@ export default function useFacts(rules: Rule[]) {
   const [facts, setFacts] = useState<Set<string>>(new Set([]));
   const [inferredFacts, setInferredFacts] = useState<Set<string>>(new Set([]));
 
-  //   function populateFacts(answers: boolean[]) {
-  //     setFacts(
-  //       answers.reduce((set, ans, idx) => {
-  //         if (ans) {
-  //           set.add(ANSWERS_MAP[idx]);
-  //         }
-  //         return set;
-  //       }, new Set<string>([]))
-  //     );
-  //   }
+  const decissions = useMemo(() => {
+    return DISEASES.filter((disease) => inferredFacts.has(disease.code));
+  }, [inferredFacts]);
 
-  function doForwardChaining(answers: boolean[]) {
+  function addFact(newFact: string) {
+    const temp = new Set(facts);
+    temp.add(newFact);
+    setFacts(temp);
+  }
+
+  function deleteFact(target: string) {
+    const temp = new Set(facts);
+    temp.delete(target);
+    setFacts(temp);
+  }
+
+  function doForwardChaining() {
     const tempInferFacts = new Set<string>([]);
     // const tempFacts = new Set<string>(facts);
 
-    const tempFacts = answers.reduce((set, ans, idx) => {
-      if (ans) {
-        set.add(ANSWERS_MAP[idx]);
-      }
-      return set;
-    }, new Set<string>([]));
+    const tempFacts = new Set<string>(facts);
 
     while (true) {
       let inferred = false;
@@ -51,5 +51,12 @@ export default function useFacts(rules: Rule[]) {
     setInferredFacts(tempInferFacts);
   }
 
-  return { facts, doForwardChaining, inferredFacts };
+  return {
+    facts,
+    doForwardChaining,
+    inferredFacts,
+    addFact,
+    deleteFact,
+    decissions,
+  };
 }

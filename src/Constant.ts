@@ -1,109 +1,121 @@
-type Disease = {
-  diseaseName: string;
-  diseaseCode: string;
+export type Disease = {
+  name: string;
+  code: string;
 };
 
 const DISEASES: Disease[] = [
   {
-    diseaseName: "Bulai",
-    diseaseCode: "P001",
+    name: "Bulai",
+    code: "P001",
   },
-  // {
-  //     diseaseName: "Blight",
-  //     diseaseCode: "P002",
-  // },
-  // {
-  //     diseaseName: "Leaf Rust",
-  //     diseaseCode: "P003",
-  // },
-  // {
-  //     diseaseName: "Burn",
-  //     diseaseCode: "P004",
-  // },
-  // {
-  //     diseaseName: "Stem Borer",
-  //     diseaseCode: "P005",
-  // },
-  // {
-  //     diseaseName: "Cob Borer",
-  //     diseaseCode: "P006",
-  // },
+  {
+    name: "Blight",
+    code: "P002",
+  },
+  {
+    name: "Leaf Rust",
+    code: "P003",
+  },
+  {
+    name: "Burn",
+    code: "P004",
+  },
+  {
+    name: "Stem Borer",
+    code: "P005",
+  },
+  {
+    name: "Cob Borer",
+    code: "P006",
+  },
 ];
 
-type Symptom = {
-  symptomName: string;
-  symptomCode: string;
+export type Symptom = {
+  name: string;
+  code: string;
 };
 
-const SYMPTOPMS: Symptom[] = [
+const SYMPTOMS: Symptom[] = [
   {
-    symptomName: "Chlorotic Colored Leaves",
-    symptomCode: "G1",
+    name: "Daun berwarna klorosis",
+    code: "G1",
   },
   {
-    symptomName: "Experiencing growth retardation",
-    symptomCode: "G2",
+    name: "Mengalami pertumbuhan terhambat",
+    code: "G2",
   },
   {
-    symptomName:
-      "The white color is like flour on the upper and lower surfaces of the leaves which are chlorotic",
-    symptomCode: "G3",
+    name: "Warna putih seperti tepung pada permukaan atas dan bawah daun yang klorosis",
+    code: "G3",
   },
   {
-    symptomName: "Leaves curled and twisted ",
-    symptomCode: "G4",
+    name: "Daun menggulung dan melintir",
+    code: "G4",
   },
   {
-    symptomName: "Impaired cob formation",
-    symptomCode: "G5",
+    name: "Pembentukan tongkol terganggu",
+    code: "G5",
   },
-  // {
-  //     symptomName: "Affected leaves look wilted",
-  //     symptomCode: "G6",
-  // },
-  // {
-  //     symptomName: "Several small patches unite to form a larger spot",
-  //     symptomCode: "G7",
-  // },
-  // {
-  //     symptomName: "Elongated light brown patches in the shape of a coil or boat",
-  //     symptomCode: "G8",
-  // },
-  // {
-  //     symptomName: "Elongated light brow patches in the shape of a coil or boat",
-  //     symptomCode: "G8",
-  // },
-  // {
-  //     symptomName: "Elongated light brown patches in the shape of a coil or boat",
-  //     symptomCode: "G8",
-  // },
-  // {
-  //     symptomName: "Elongated light brow patches in the shape of a coil or boat",
-  //     symptomCode: "G8",
-  // },
-  // {
-  //     symptomName: "Elongated light brow patches in the shape of a coil or boat",
-  //     symptomCode: "G8",
-  // },
-  // {
-  //     symptomName: "Elongated light brow patches in the shape of a coil or boat",
-  //     symptomCode: "G8",
-  // },
-  // {
-  //     symptomName: "Elongated light brow patches in the shape of a coil or boat",
-  //     symptomCode: "G8",
-  // },
+  {
+    name: "Daun yang terserang tampak layu",
+    code: "G6",
+  },
+  {
+    name: "Beberapa bercak kecil menyatu membentuk bercak yang lebih besar",
+    code: "G7",
+  },
+  {
+    name: "Bercak coklat muda memanjang berbentuk gulungan atau perahu",
+    code: "G8",
+  },
+  {
+    name: "Bercak coklat berbentuk elips",
+    code: "G9",
+  },
+  {
+    name: "Daun tampak kering",
+    code: "G10",
+  },
+  {
+    name: "Daun terlihat kering",
+    code: "G11",
+  },
+  {
+    name: "Bercak-bercak kecil berwarna coklat atau kuning pada permukaan daun",
+    code: "G12",
+  },
+  {
+    name: "Bercak-bercak merah pada pelepah",
+    code: "G13",
+  },
+  {
+    name: "Terdapat benang-benang yang bentuknya tidak beraturan, berwarna putih, kemudian coklat",
+    code: "G14",
+  },
+  {
+    name: "Keluar serbuk seperti tepung berwarna coklat kekuningan",
+    code: "G15",
+  },
 ];
 
-const Questions = [
-  "Chlorotic Colored Leaves",
+// const SYMPTOMS_MAP = SYMPTOMS.reduce((map, symptom) => {
+//   map.set(symptom.code, symptom.name);
+//   return map;
+// }, new Map<string, string>());
 
-  "Experiencing growth retardation",
+// const DISEASE_MAP = DISEASES.reduce((map, disease) => {
+//   map.set(disease.code, disease.name);
+//   return map;
+// }, new Map<string, string>());
+// const ANSWERS_MAP = ["a", "b", "c", "f"];
+// // const Questions = [
+// //   "Chlorotic Colored Leaves",
 
-  "The white color is like flour on the upper and lower surfaces of the leaves which are chlorotic",
+// //   "Experiencing growth retardation",
 
-  "Leaves curled and twisted ",
-];
-const ANSWERS_MAP = ["a", "b", "c", "f"];
+// //   "The white color is like flour on the upper and lower surfaces of the leaves which are chlorotic",
 
-export { DISEASES, SYMPTOPMS, Questions, ANSWERS_MAP };
+// //   "Leaves curled and twisted ",
+// // ];
+
+export { DISEASES, SYMPTOMS };
