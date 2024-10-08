@@ -5,10 +5,11 @@ import useRule from "./hooks/useRule";
 import useFacts from "./hooks/useFacts";
 import { SYMPTOMS } from "./Constant";
 import { useRef } from "react";
+import left_arrow from "./assets/left_arrow.svg";
 
 function App() {
   const { rules } = useRule();
-  const { facts, doForwardChaining, toggleAnswer, decissions, clearFacts } =
+  const { doForwardChaining, toggleAnswer, decissions, clearFacts } =
     useFacts(rules);
 
   const session = useRef<"questions" | "conclussion">("questions");
@@ -18,14 +19,14 @@ function App() {
     doForwardChaining();
   }
 
-  console.log(facts, "facts");
-  console.log(decissions, "decissions");
-
   return (
-    <div className="bg-slate-800 min-h-screen">
+    <div className="bg-slate-800 min-h-screen ">
       {session.current === "questions" && (
         <div className="flex flex-col w-full items-center p-5 gap-5">
-          <div>
+          <h1 className="text-white font-bold text-3xl">
+            Corn Disease Detector
+          </h1>
+          <div className="flex flex-col gap-3 max-w-80 sm:max-w-[40rem] bg-slate-600 p-3 sm:py-10 sm:px-16  rounded-xl shadow-lg">
             {SYMPTOMS.map((symptom) => {
               return (
                 <Question
@@ -41,21 +42,36 @@ function App() {
           <button
             type="button"
             onClick={evaluateFacts}
-            className="py-2 px-10 w-44 bg-slate-700 text-white rounded-md"
+            className="py-2 px-10 w-44 bg-slate-700 text-white rounded-md hover:opacity-80 shadow-lg"
           >
-            Evaluate
+            Evaluasi
           </button>
         </div>
       )}
       {/* conclussion */}
       {session.current === "conclussion" && (
         <div className="text-white flex flex-col w-full items-center p-5 gap-5">
-          <div>
+          <div className="flex justify-center w-full relative">
+            <button
+              type="button"
+              onClick={() => {
+                session.current = "questions";
+                clearFacts();
+              }}
+              className="absolute bottom-1/2 left-0 translate-y-1/2"
+            >
+              <img src={left_arrow} alt="" className="w-8" />
+            </button>
             <h2 className="text-2xl">Hasil Evaluasi</h2>
+          </div>
 
+          <div
+            className={`flex flex-col max-w-80 sm:max-w-[40rem] bg-slate-600 p-3 sm:py-10 sm:px-16 rounded-xl overflow-auto h-[500px] ${
+              decissions.length < 1 ? "justify-center" : "justify-start"
+            }`}
+          >
             {decissions.length > 0 ? (
               <>
-                <p>Tanaman kamu memiliki {decissions.length} penyakit: </p>
                 <ul>
                   {decissions.map((decission) => (
                     <li key={decission.code}>{decission.name}</li>
@@ -66,16 +82,6 @@ function App() {
               <p>Tanaman kamu tidak memiliki penyakit</p>
             )}
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              session.current = "questions";
-              clearFacts();
-            }}
-            className="bg-gray-700 py-2 px-10 rounded-lg"
-          >
-            Kembali
-          </button>
         </div>
       )}
     </div>

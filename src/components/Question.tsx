@@ -15,7 +15,7 @@ export default function Question({
     <div>
       <label
         htmlFor={id}
-        className="flex gap-10 p-3 bg-green-200 w-96 sm:w-[35rem] max-w-[40rem] cursor-pointer hover:opacity-85"
+        className="flex gap-5 p-3 rounded-lg bg-green-300 w-full cursor-pointer hover:opacity-85"
       >
         <input
           type="checkbox"
