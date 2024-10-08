@@ -22,11 +22,15 @@ function App() {
   return (
     <div className="bg-slate-800 min-h-screen ">
       {session.current === "questions" && (
-        <div className="flex flex-col w-full items-center p-5 gap-5">
-          <h1 className="text-white font-bold text-3xl">
-            Corn Disease Detector
+        <div className="flex flex-col w-full items-center p-5 sm:py-10 gap-16">
+          <h1 className="text-white font-bold text-2xl sm:text-3xl">
+            Corn Plant Disease Detector
           </h1>
-          <div className="flex flex-col gap-3 max-w-80 sm:max-w-[40rem] bg-slate-600 p-3 sm:py-10 sm:px-16  rounded-xl shadow-lg">
+          <div className="flex flex-col gap-3 max-w-80 sm:max-w-[40rem] bg-slate-600 p-3 sm:py-5 sm:px-16  rounded-xl shadow-lg">
+            <p className="text-white mb-3">
+              Pilihlah pernyataan yang benar di bawah ini berdasarkan kondisi
+              tanaman anda
+            </p>
             {SYMPTOMS.map((symptom) => {
               return (
                 <Question
@@ -66,17 +70,23 @@ function App() {
           </div>
 
           <div
-            className={`flex flex-col max-w-80 sm:max-w-[40rem] bg-slate-600 p-3 sm:py-10 sm:px-16 rounded-xl overflow-auto h-[500px] ${
+            className={`flex flex-col w-80 sm:w-96 sm:max-w-[40rem] bg-slate-600 p-5 shadow-lg rounded-xl overflow-auto h-[500px] ${
               decissions.length < 1 ? "justify-center" : "justify-start"
             }`}
           >
             {decissions.length > 0 ? (
               <>
-                <ul>
+                <p className="mb-2 text-lg">Penyakit Terdeteksi:</p>
+                <ol>
                   {decissions.map((decission) => (
-                    <li key={decission.code}>{decission.name}</li>
+                    <li
+                      key={decission.code}
+                      className="list-decimal list-inside"
+                    >
+                      {decission.name}
+                    </li>
                   ))}
-                </ul>
+                </ol>
               </>
             ) : (
               <p>Tanaman kamu tidak memiliki penyakit</p>
